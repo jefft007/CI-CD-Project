@@ -21,7 +21,7 @@ tasks = db["tasks"]
 # ----------------------------------------
 @app.route('/')
 def home():
-    return {"message": "CI/CD Pipeline Working Successfully"}
+    return {"message": "Task API Running"}
 
 # ----------------------------------------
 # GET ALL TASKS
