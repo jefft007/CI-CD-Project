@@ -1,0 +1,84 @@
+<div class="min-h-screen p-6 md:p-12 relative z-10">
+  
+  <header class="glass-card px-8 py-6 mb-10 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-4">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-primary-500 to-accent-500 flex items-center justify-center shadow-lg shadow-primary-500/30">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-white tracking-tight">Task Dashboard</h1>
+        <p class="text-sm text-gray-400">Manage your daily activities</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-4">
+      <button routerLink="/task-form" class="btn-primary flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        </svg>
+        New Task
+      </button>
+      
+      <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20">
+        <img src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="User Profile" class="w-full h-full object-cover"/>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Task Card -->
+    <div
+      *ngFor="let task of tasks"
+      class="glass-card p-6 group hover:-translate-y-1 transition-all duration-300 hover:shadow-primary-500/20"
+    >
+      <div class="flex justify-between items-start mb-4">
+        <h2 class="text-xl font-semibold text-white group-hover:text-primary-400 transition-colors">
+          {{ task.title }}
+        </h2>
+        <span [class]="task.status === 'Completed' ? 'px-3 py-1 text-xs font-medium rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'px-3 py-1 text-xs font-medium rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30'">
+          {{ task.status }}
+        </span>
+      </div>
+
+      <p class="text-gray-400 text-sm mb-6 line-clamp-2">
+        Task description can go here to provide more context about what needs to be done.
+      </p>
+
+      <div class="flex gap-3 mt-auto">
+        <button
+          *ngIf="task.status !== 'Completed'"
+          class="flex-1 bg-white/10 hover:bg-emerald-500/20 hover:text-emerald-400 text-white text-sm font-medium py-2 px-4 rounded-lg border border-white/5 transition-all flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+          Complete
+        </button>
+
+        <button
+          class="flex-1 bg-white/10 hover:bg-red-500/20 hover:text-red-400 text-white text-sm font-medium py-2 px-4 rounded-lg border border-white/5 transition-all flex items-center justify-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+          </svg>
+          Delete
+        </button>
+      </div>
+    </div>
+    
+    <!-- Empty State / Add Task CTA -->
+    <div routerLink="/task-form" class="glass-card border-dashed border-2 border-white/20 p-6 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-white/10 transition-colors min-h-[240px]">
+      <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-4 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-medium text-white mb-1">Create New Task</h3>
+      <p class="text-sm text-gray-400">Add a new task to your dashboard</p>
+    </div>
+
+  </div>
+
+</div>
