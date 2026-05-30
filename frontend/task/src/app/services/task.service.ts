@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class TaskService {
 
   // RENDER BACKEND URL
-  apiUrl = 'https://ci-cd-project-ogqi.onrender.com/tasks';
+  apiUrl = 'http://127.0.0.1:5000/tasks';
 
   constructor(private http: HttpClient) { }
 

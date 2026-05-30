@@ -8,14 +8,9 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  // Use environment variables in production
-  private apiUrl = 'https://task-management-app-backend.onrender.com';
+  private apiUrl = 'http://127.0.0.1:5000'; // Forcing local backend for now
 
   constructor(private http: HttpClient, private router: Router) { 
-    // Fallback to localhost if backend is not deployed yet or for local dev
-    if (window.location.hostname === 'localhost') {
-      this.apiUrl = 'http://127.0.0.1:5000';
-    }
   }
 
   signup(userData: any): Observable<any> {
